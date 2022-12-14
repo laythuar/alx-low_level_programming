@@ -2,7 +2,6 @@
 
 /**
  * print_alphabet - entry point
- #include "main.h"
  *
  * Return: 0
  */
