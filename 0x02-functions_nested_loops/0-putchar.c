@@ -1,9 +1,9 @@
 #include "main.h"
 
 /**
- * main - print _putchar
+ * main - main block
  *
- * Return: o (Success)
+ * Return: o nothing, return void
  */
 
 int main(void)
@@ -17,7 +17,8 @@ int main(void)
 	_putchar('h');
 	_putchar('a');
 	_putchar('r');
-	putchar('\n');
+	_putchar('\n');
+
 	return (0);
 }
 
