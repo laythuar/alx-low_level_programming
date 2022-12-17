@@ -6,7 +6,7 @@
  *
  * Return: Always 0
  */
-void main(void)
+int main(void)
 {
 long prime = 612852475143, div;
 while (div < (prime / 2))
