@@ -1,34 +1,64 @@
 #include "main.h"
+#include <stdio.h>
 
 /**
- * create_file - Creates a file
- * @filename: A pointer to the name of the file to create.
- * @text_content: A pointer to a string to write to the file
+ * create_file - function that creates a file.
+ * @filename: pointer to the name of the file to create.
+ * @text_content: pointer to the null terminated string to write to file.
  *
- * Return: If the function fails - -1
- *		Otherwise - 1.
+ * fails when file cannot be created, file cannot be written etc.
+ * The created file must have those permissions: rw-------. If the file,
+ * already exists, do not change the permissions.
+ * if the file already exists, truncate it.
+ * if filename is NULL return -1.
+ * if text_content is NULL create an empty file.
+ *
+ * Return: 1 on success, -1 on failure.
  */
 
 int create_file(const char *filename, char *text_content)
 {
-	int o, w, len = 0;
+	int file_descriptor;
+	int wwrite;
 
-	if (filename == NULL)
+	/* if filename is NULL */
+	if (!filename)
 		return (-1);
 
-	if (text_content != NULL)
-	{
-		for (len = 0; text_content[len];)
-			len++;
-	}
+	/* if text_content is NULL create an empty file */
+	if (!text_content)
+		text_content = "";
 
-	o = open(filename, O_CREAT | O_RDWR | O_TRUNC, 0600);
-	w = write(o, text_content, len);
+	file_descriptor = open(filename, O_CREAT | O_WRONLY | O_TRUNC, 0600);
 
-	if (o == -1 || w == -1)
+	/* If opening fails */
+	if (file_descriptor == -1)
 		return (-1);
 
-	close(o);
+	/* write into file */
+	wwrite = write(file_descriptor, text_content, _strlen(text_content));
+	/* if write fails */
+	if (wwrite == -1)
+		return (-1);
+
+	/* close file */
+	close(file_descriptor);
 
 	return (1);
+}
+
+/**
+ * _strlen - Function that returns the length of string.
+ * @s: pointer to the null-terminated byte string to be examined.
+ *
+ * Return: The length of the null-terminated byte string s.
+ */
+
+int _strlen(const char *s)
+{
+	int len = 0;
+
+	while (s[len] != '\0')
+		len++;
+	return (len);
 }

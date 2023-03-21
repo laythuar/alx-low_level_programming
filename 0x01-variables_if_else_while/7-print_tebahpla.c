@@ -1,22 +1,24 @@
 #include <stdio.h>
-#include <time.h>
-#include <stdlib.h>
+#include <ctype.h>
+
 /**
- * main - main block
- * description: print all single digit number of base 10
- * starting from 0, followed by a new line.
- * Return: 0
- */
+ * main - Program that prints the lowercase alphabet in reverse,
+ * followed by a new line.
+ *
+ * You can only use the putchar function (every other function (printf,
+ * puts, etc…) is forbidden).
+ * All your code should be in the main function.
+ * You can only use putchar twice in your code.
+
+ * Return: 0.
+*/
+
 int main(void)
 {
-	char c = 'z';
+char chr;
 
-	while (c >= 'a')
-	{
-		putchar(c);
-		c--;
-	}
-
+	for (chr = 'z'; chr >= 'a'; --chr)
+		putchar(chr);
 	putchar('\n');
 	return (0);
 }

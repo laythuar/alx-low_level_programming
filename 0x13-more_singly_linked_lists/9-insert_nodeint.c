@@ -1,45 +1,53 @@
 #include "lists.h"
+#include <stdlib.h>
 
 /**
- * insert_nodeint_at_index - Inserts a new node to a listint_
- *				 list at a given position.
- * @head: A pointer to the address of the
- *		head of the listint_t list
- * @idx: The index of the listint_t list where the new
- *		node should be added - indices start at 0.
- * @n: The integer for the new node to contain.
+ * insert_nodeint_at_index - function that inserts a new node at,
+ * a given position.
+ * @head: pointer to pointer to the head of linked list.
+ * @idx: index of the list where the new node should be added.
+ * @n: value of the new node.
  *
- * Return: If the function fails - NULL
- *		 Otherwise - the address of the new node
+ * if it is not possible to add the new node at index idx, do not,
+ * add the new node and return NULL.
+ *
+ * Return:  the address of the new node, or NULL if it failed.
  */
+
 listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 {
-	listint_t *new, *copy = *head;
-	unsigned int node;
-
-	new = malloc(sizeof(listint_t));
-	if (new == NULL)
+	listint_t *new_node, *traverse;
+	unsigned int i = 0;
+	/* if there is no list return null */
+	if (head == NULL)
 		return (NULL);
-
-	new->n = n;
-
+	/* create the new node */
+	new_node = malloc(sizeof(listint_t));
+	if (new_node == NULL)
+		return (NULL);
+	/* access the n field of the new_node and initialize it as n */
+	new_node->n = n;
+	/* check if idx = 0 */
 	if (idx == 0)
 	{
-		new->next = copy;
-		*head = new;
-		return (new);
+		/* access the next field of new_node and assign it as first node */
+		new_node->next = *head;
+		*head = new_node;
+		return (new_node);
 	}
-
-	for (node = 0; node < (idx - 1); node++)
+	/* make traverse be the value at head */
+	traverse = *head;
+	while (i != idx - 1 && traverse != NULL)
 	{
-		if (copy == NULL || copy->next == NULL)
-			return (NULL);
-
-		copy = copy->next;
+		traverse = traverse->next;
+		i++;
 	}
 
-	new->next = copy->next;
-	copy->next = new;
-
-	return (new);
+	if (i == idx - 1 && traverse != NULL)
+	{
+		new_node->next = traverse->next;
+		traverse->next = new_node;
+		return (new_node);
+	}
+	return (NULL);
 }

@@ -1,23 +1,28 @@
 #include <stdio.h>
-
 /**
- * main - prints largest prime factor
- * Return: Always 0
- */
+ * main - Program that finds and prints the largest prime factor of the,
+ * number 612852475143, followed by a new line.
+ *
+ * You are allowed to use the standard library.
+ * Your program will be compiled with this command:
+ * gcc -Wall -pedantic -Werror -Wextra -std=gnu89 100-prime_factor.c -o
+ * 100-prime_factor -lm
+ *
+ * Return: 0
+*/
 
 int main(void)
 {
-	long int n, fp;
+	long i, number = 612852475143;
 
-	n = 612852475143;
-	for (fp = 2; fp <= n; fp++)
+	for (i  = 2; i <= number; i++)
 	{
-		if (n % fp == 0)
+		if (number % i == 0)
 		{
-			n /= fp;
-			fp--;
+			number = number / i;
+			i--;
 		}
 	}
-	printf("%d\n", fp);
+	printf("%lu\n", i);
 	return (0);
 }

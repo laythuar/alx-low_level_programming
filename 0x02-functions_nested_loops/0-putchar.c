@@ -1,25 +1,20 @@
 #include "main.h"
 
 /**
- * main - main block
- *
- * Return: o nothing, return void
- */
+ * main - Entry point
+ * Description: prints _putchar followed by new line
+ * Return: 0
+*/
 
 int main(void)
-
 {
-	_putchar('_');
-	_putchar('p');
-	_putchar('u');
-	_putchar('t');
-	_putchar('c');
-	_putchar('h');
-	_putchar('a');
-	_putchar('r');
-	_putchar('\n');
+	int str[] = {95, 112, 117, 116, 99, 104, 97, 114};
+	int i;
 
+	for (i = 0; i < 8; i++)
+	{
+		_putchar(str[i]);
+	}
+	_putchar('\n');
 	return (0);
 }
-
-

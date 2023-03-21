@@ -1,8 +1,10 @@
-#ifndef MAIN_H
+#ifndef MAIH_H
 #define MAIN_H
 
-int _putchar(char c);
-int check_num(char *str);
-
+int main(int argc __attribute__((unused)), char *argv[]);
+int main(int argc, char *argv[]__attribute__((unused)));
+int main(int argc, char *argv[]);
+int main(int argc, char *argv[]);
+int main(int argc, char *argv[]);
 
 #endif

@@ -1,29 +1,38 @@
 #include "main.h"
+#include <stdio.h>
+#include <string.h>
 
 /**
- * _strspn - a function that gets the length of a prefix substring
- * @s: input
- * @accept: input
- * Return: Always 0 (success)
+ **_strspn - function that gets the length of a prefix substring.
+ * @s: pointer to the null-terminated byte string to be analyzed.
+ * @accept: pointer to the null-terminated byte string that contains the,
+ * characters to search for.
+ *
+ * Return:  number of bytes in the initial segment of s which consist
+ * only of bytes from accept.
  */
+
 unsigned int _strspn(char *s, char *accept)
 {
-	unsigned int n = 0;
-	int r;
+	unsigned int length, j;
 
-	while (*s)
+	/* loop through string s */
+	for (length = 0; *(s + length) != '\0'; length++)
 	{
-		for (r = 0; accept[r]; r++)
+		/* loop through string accept */
+		for (j = 0; *(accept + j) != '\0'; j++)
 		{
-			if (*s == accept[r])
+			/* check where the first character in string j appears */
+			/* in string c and immediately break out of loop */
+			if (*(s + length) == *(accept + j))
 			{
-				n++;
 				break;
 			}
-			else if (accept[r + 1] == '\0')
-				return (n);
 		}
-		s++;
+		/* check if there is no string accept to loop through */
+		if (!*(accept + j))
+			break;
 	}
-	return (n);
+	/* return the length where the first character appears */
+	return (length);
 }

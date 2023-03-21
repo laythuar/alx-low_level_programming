@@ -1,36 +1,28 @@
+#include <stdio.h>
 #include "main.h"
 
 /**
- * cap_string - capitalizes words
- * @str: string
- * Return: pointer to string
+ * cap_string - func to capitalize all words of a string.
+ * @string: pointer to string to be capitalized.
+ *
+ * Return: the capitalized string
  */
-char *cap_string(char *str)
+
+char *cap_string(char *string)
 {
-	int i = 0;
+	const char OFFSET = 'a' - 'A';
+	int j, i = 1;
+	char sep[] = " \t\n,;.!?\"(){}";
 
-	while (str[i])
+	i = 1;
+	if (string[0] >= 'a' && string[0] <= 'z')
+		string[0] -= OFFSET;
+	while (string[i] != '\0')
 	{
-		while (!(str[i] >= 'a' && str[i] <= 'z'))
-			i++;
-
-		if (str[i - 1] == ' ' ||
-		    str[i - 1] == '\t' ||
-		    str[i - 1] == '\n' ||
-		    str[i - 1] == ',' ||
-		    str[i - 1] == ';' ||
-		    str[i - 1] == '.' ||
-		    str[i - 1] == '!' ||
-		    str[i - 1] == '?' ||
-		    str[i - 1] == '"' ||
-		    str[i - 1] == '(' ||
-		    str[i - 1] == ')' ||
-		    str[i - 1] == '{' ||
-		    str[i - 1] == '}' ||
-		    i == 0)
-			str[i] -= 32;
+		for (j = 0; sep[j] != '\0'; j++)
+			if (string[i - 1] == sep[j] && (string[i] >= 'a' && string[i] <= 'z'))
+				string[i] -= OFFSET;
 		i++;
 	}
-
-	return (str);
+	return (string);
 }

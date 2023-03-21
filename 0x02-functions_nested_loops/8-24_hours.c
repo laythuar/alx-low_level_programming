@@ -1,28 +1,28 @@
+#include <stdio.h>
+#include <stdlib.h>
 #include "main.h"
 
 /**
- * jack_bauer - print every minutes of the day
+ * jack_bauer - Function that prints time from 00:00 to 24:00.
  *
- * Return: Always 0
- */
+ * Return: No return.
+*/
 
 void jack_bauer(void)
-
 {
-	int a;
-	int b;
+	int hr;
+	int min;
 
-	for (a = 0; a <= 23; a++)
+	for (hr = 0; hr < 24; hr++)
 	{
-		for (b = 0; b <= 59; b++)
+		for (min = 0; min < 60; min++)
 		{
-			_putchar(a / 10 + '0');
-			_putchar(a % 10 + '0');
+			_putchar((hr / 10) + '0');
+			_putchar((hr % 10) + '0');
 			_putchar(':');
-			_putchar(b / 10 + '0');
-			_putchar(b % 10 + '0');
+			_putchar((min / 10) + '0');
+			_putchar((min % 10) + '0');
 			_putchar('\n');
-
 		}
 	}
 }

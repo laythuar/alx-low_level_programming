@@ -1,74 +1,34 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
-#include <string.h>
+#include "main.h"
 
 /**
- * check_num - string therevare digit
- * @str: array str
+ * main - program that adds positive numbers.
+ * @argc: number of arguments passed to the function.
+ * @argv: argument vector of pointers to strings.
  *
- * Return: Always 0 (success)
- */
-
-int check_num(char *str)
-
-{
-/*Declaring variables*/
-unsigned int count;
-
-count = 0;
-while (count < strlen(str)) /*count string*/
-
-{
-if (!isdigit(str[count])) /*check if str there are digit*/
-{
-return (0);
-}
-
-count++;
-}
-return (1);
-}
-
-
-/**
- * main - print the name of the program
- * @argc: count arguments
- * @argv: Arguments
- *
- * Return: Always 0 (success)
+ * if one of the number contains symbols that are not digits,
+ * print Error, followed by a new line, and return 1.
+ * Return: 0 (Success)
  */
 
 int main(int argc, char *argv[])
-
 {
+	int i, j, add = 0;
 
-/*Declaring variables*/
-int count;
-int str_to_int;
-int sum = 0;
-
-count = 1;
-while (count < argc) /*Goes through the whole array*/
-{
-if (check_num(argv[count]))
-
-{
-str_to_int = atoi(argv[count]); /*ATOI --> convert string to int*/
-sum += str_to_int;
-}
-
-/*condition if one of the numbers contains symbols that are not digits*/
-else
-{
-printf("Error\n");
-return (1);
-}
-
-count++;
-}
-
-printf("%d\n", sum); /*print sum*/
-
-return (0);
+	for (i = 1; i < argc; i++)
+	{
+		for (j = 0; argv[i][j] != '\0'; j++)
+		{
+			if (!isdigit(argv[i][j]))
+			{
+				printf("Error\n");
+				return (1);
+			}
+		}
+		add += atoi(argv[i]);
+	}
+	printf("%d\n", add);
+	return (0);
 }

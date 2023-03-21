@@ -1,23 +1,24 @@
-#include "main.h"
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include "main.h"
 
 /**
- * main - prints the multiplication of two integers
- * @argc: arguments count
- * @argv: arguments vector
- * Return: 0 if true, 1 if false
+ * main - program that adds two numbers.
+ * @argc: number of arguments passed to the function.
+ * @argv: argument vector of pointers to strings.
+ *
+ * Return: 0 (Success) or 1 (Error)
  */
+
 int main(int argc, char *argv[])
 {
-int a, b;
-if (argc == 3)
-{
-a = atoi(argv[1]);
-b = atoi(argv[2]);
-printf("%d\n", a *b);
-return (0);
-}
-printf("Error\n");
-return (1);
+	if (argc != 3)
+	{
+		printf("Error\n");
+		return (1);
+	}
+
+	printf("%d\n", atoi(argv[1]) * atoi(argv[2]));
+
+	return (0);
 }

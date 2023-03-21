@@ -1,23 +1,30 @@
 #include "main.h"
 
 /**
- * flip_bits - Counts the number of bits needed to be
- *		flipped to get from one number to another
- * @n: The number
- * @m: The number to flip n to
+ * flip_bits - func that returns no. of bits needed to flip to get,
+ * from one number to another.
+ * @n: unsigned long integer.
+ * @m: unsigned long integer.
  *
- * Return: The necessary number of bits to flip to get from n to m
+ * You are not allowed to use the % or / operators.
+ *
+ * Return: number of bits
  */
 
 unsigned int flip_bits(unsigned long int n, unsigned long int m)
 {
-	unsigned long int xor = n ^ m, bits = 0;
+	int count = 0;
+	/* take XOR of n and m and store in XOR_nm */
+	unsigned long int XOR_nm = n ^ m;
 
-	while (xor > 0)
+	/* Using Brian Kernighan’s algorithm to count set bits */
+	/* count stores the total bits set in XOR_nm */
+	while (XOR_nm)
 	{
-		bits += (xor & 1);
-		xor >>= 1;
+		/* clear the least significant bit */
+		XOR_nm = XOR_nm & (XOR_nm - 1);
+		count++;
 	}
-
-	return (bits);
+	/* return count */
+	return (count);
 }

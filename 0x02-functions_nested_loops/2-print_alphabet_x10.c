@@ -1,22 +1,28 @@
+#include <ctype.h>
 #include "main.h"
 
 /**
- * main - alphabet
+ * print_alphabet_x10 - Function that prints 10 times the alphabet,
+ * in lowercase, followed by a new line.
  *
- * print_alphabet_x10 - print a - z ten times
- */
+ * You can only use _putchar twice in your code.
+ *
+ * Return: 0.
+*/
 
 void print_alphabet_x10(void)
 {
-	int i;
-	char j;
 
-	for (i = 0; i < 10; i++)
+	int x, a;
+	int lower_x;
+
+	for (a = 0; a <= 9; a++)
 	{
-		for (j = 'a'; j <= 'z'; j++)
+		for (x = 'A'; x <= 'Z'; x++)
 		{
-			_putchar(j);
+			lower_x = tolower(x);
+			_putchar(lower_x);
 		}
-		_putchar('\n');
+	_putchar('\n');
 	}
 }

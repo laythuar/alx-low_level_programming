@@ -1,21 +1,24 @@
 #include "main.h"
 
 /**
- * get_bit - Gets the value of a bit at a given index
- * @n: The bit.
- * @index: The index to get the value at - indices start at 0
+ * get_bit - func that returns the value of a bit at a given index.
+ * @index: index of bit.
+ * @n: integer.
  *
- * Return: If an error occurs - -1
- *		Otherwise - The value of bit at index
+ * Return: the bit value or -1 if error occured.
+ *
  */
 
 int get_bit(unsigned long int n, unsigned int index)
 {
-	if (index >= (sizeof(unsigned long int) * 8))
+	int bit_value;
+	/* in unsigned long int bit indexes range from 0 to 63 */
+	if (index > 63)
 		return (-1);
 
-	if ((n & (1 << index)) == 0)
-		return (0);
+	/* to get bit value */
+	bit_value = (n >> index) & 1;
 
-	return (1);
+	/* return bit value */
+	return (bit_value);
 }

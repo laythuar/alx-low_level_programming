@@ -1,38 +1,49 @@
 #include "main.h"
-#include <stdlib.h>
 
 /**
- * read_textfile - Reads a text file and prints it to POSIX stdout
- * @filename: A pointer to the name of the file
- * @letters: The number of letters the
- *		function should read and print
- * Return: If the function fails or filename is NULL - 0
- *		O/w - the actual number of bytes the function can read and print
+ * read_textfile - function that reads a txt file and prints it to,
+ * POSIX standard out.
+ * @filename: pointer to the file.
+ * @letters: number of letters to read and print.
+ *
+ * If file cannot be opened or read return 0.
+ * if filename is NULL return 0.
+ * if write fails or doesn't write expected amount of bytes return 0.
+ *
+ * Return: actual number of letters it could read and print.
+ *
  */
+
 ssize_t read_textfile(const char *filename, size_t letters)
 {
-	ssize_t o, r, w;
-	char *buffer;
+	int file_descriptor;
+	ssize_t wwrite, sz;
+	char *buf; /* pointer to buffer to read data from */
 
-	if (filename == NULL)
+	/* if filename is NULL */
+	if (!filename)
 		return (0);
 
-	buffer = malloc(sizeof(char) * letters);
-	if (buffer == NULL)
+	/* opening the file */
+	file_descriptor = open(filename, O_RDONLY);
+	/* If opening fails */
+	if (file_descriptor == -1)
 		return (0);
 
-	o = open(filename, O_RDONLY);
-	r = read(o, buffer, letters);
-	w = write(STDOUT_FILENO, buffer, r);
-
-	if (o == -1 || r == -1 || w == -1 || w != r)
-	{
-		free(buffer);
+	buf = malloc(sizeof(char) * letters);
+	/* if no buffer */
+	if (!buf)
 		return (0);
-	}
+	/* read the file */
+	sz = read(file_descriptor, buf, letters);
+	buf[sz] = '\0';
 
-	free(buffer);
-	close(o);
-
-	return (w);
+	/* write to stdout */
+	wwrite = write(STDOUT_FILENO, buf, sz);
+	/* close file */
+	close(file_descriptor);
+	/* free buf */
+	free(buf);
+	/* return number of letters */
+	return (wwrite);
 }
